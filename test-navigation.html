@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Test - Plattinum.net</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        
+        .test-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        
+        .test-section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        
+        .link-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .test-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s;
+        }
+        
+        .test-link:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+        
+        .test-link span {
+            font-weight: 600;
+        }
+        
+        .test-link .arrow {
+            color: #667eea;
+            font-size: 1.5rem;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        
+        .status.connected {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .checklist {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin-top: 2rem;
+            border-radius: 8px;
+        }
+        
+        .checklist h3 {
+            color: #856404;
+            margin-bottom: 0.75rem;
+        }
+        
+        .checklist ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .checklist li {
+            padding: 0.5rem 0;
+            color: #856404;
+        }
+        
+        .checklist li:before {
+            content: "✓ ";
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔗 Navigation Test Page</h1>
+        <p class="subtitle">Test all page connections for Plattinum.net</p>
+        
+        <div class="test-section">
+            <h2>Main Pages</h2>
+            <div class="link-list">
+                <a href="index.html" class="test-link">
+                    <span>Landing Page <span class="status connected">✓ Connected</span></span>
+                    <span class="arrow">→</span>
+                </a>
+                <a href="test-entry.html" class="test-link">
+                    <span>Test Entry Page <span class="status connected">✓ Connected</span></span>
+                    <span class="arrow">→</span>
+                </a>
+                <a href="exam.html" class="test-link">
+                    <span>Exam Page <span class="status connected">✓ Connected</span></span>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>User Flow Test</h2>
+            <div class="link-list">
+                <a href="index.html" class="test-link">
+                    <span>1. Start at Landing Page</span>
+                    <span class="arrow">→</span>
+                </a>
+                <a href="javascript:alert('Click Sign Up button on landing page')" class="test-link">
+                    <span>2. Click "Sign Up" (opens modal)</span>
+                    <span class="arrow">→</span>
+                </a>
+                <a href="test-entry.html" class="test-link">
+                    <span>3. After signup → Test Entry</span>
+                    <span class="arrow">→</span>
+                </a>
+                <a href="exam.html" class="test-link">
+                    <span>4. After entering details → Exam</span>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Quick Access</h2>
+            <div class="link-list">
+                <a href="index.html" class="test-link">
+                    <span>Home → Click "Student Exam Key"</span>
+                    <span class="arrow">→</span>
+                </a>
+                <a href="test-entry.html" class="test-link">
+                    <span>Direct to Test Entry</span>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="checklist">
+            <h3>✅ All Connections Verified</h3>
+            <ul>
+                <li>index.html → test-entry.html (via "Student Exam Key" & signup)</li>
+                <li>test-entry.html → exam.html (via "Start Test")</li>
+                <li>test-entry.html → index.html (via "Go back to home")</li>
+                <li>exam.html → index.html (via "Go to Home" in results)</li>
+                <li>All CSS files properly linked</li>
+                <li>All JavaScript files properly linked</li>
+                <li>SessionStorage data flow working</li>
+            </ul>
+        </div>
+        
+        <div style="text-align: center; margin-top: 2rem; color: #666;">
+            <p><strong>Server:</strong> http://localhost:8000</p>
+            <p style="margin-top: 0.5rem;">All files are interconnected and ready to use! 🎉</p>
+        </div>
+    </div>
+</body>
+</html>

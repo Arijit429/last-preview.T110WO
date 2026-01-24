@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Exam Connection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            background: #f5f5f5;
+        }
+        .test-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .success { color: green; }
+        .error { color: red; }
+        .info { color: blue; }
+    </style>
+</head>
+<body>
+    <h1>Exam Files Connection Test</h1>
+    
+    <div class="test-box">
+        <h2>File Loading Tests</h2>
+        <div id="cssTest">Testing CSS...</div>
+        <div id="jsTest">Testing JS...</div>
+        <div id="lucideTest">Testing Lucide...</div>
+    </div>
+    
+    <div class="test-box">
+        <h2>Quick Links</h2>
+        <p><a href="index.html">Go to Landing Page</a></p>
+        <p><a href="test-entry.html">Go to Test Entry</a></p>
+        <p><a href="exam.html">Go to Exam Page</a></p>
+    </div>
+    
+    <div class="test-box">
+        <h2>Test Data Setup</h2>
+        <button onclick="setupTestData()">Setup Test Data in SessionStorage</button>
+        <button onclick="checkTestData()">Check Test Data</button>
+        <div id="dataResult"></div>
+    </div>
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // Test CSS
+        fetch('exam.css')
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('cssTest').innerHTML = '<span class="success">✓ exam.css loaded successfully</span>';
+                } else {
+                    document.getElementById('cssTest').innerHTML = '<span class="error">✗ exam.css failed to load</span>';
+                }
+            })
+            .catch(err => {
+                document.getElementById('cssTest').innerHTML = '<span class="error">✗ exam.css error: ' + err.message + '</span>';
+            });
+        
+        // Test JS
+        fetch('exam.js')
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('jsTest').innerHTML = '<span class="success">✓ exam.js loaded successfully</span>';
+                } else {
+                    document.getElementById('jsTest').innerHTML = '<span class="error">✗ exam.js failed to load</span>';
+                }
+            })
+            .catch(err => {
+                document.getElementById('jsTest').innerHTML = '<span class="error">✗ exam.js error: ' + err.message + '</span>';
+            });
+        
+        // Test Lucide
+        setTimeout(() => {
+            if (typeof lucide !== 'undefined') {
+                document.getElementById('lucideTest').innerHTML = '<span class="success">✓ Lucide library loaded successfully</span>';
+                lucide.createIcons();
+            } else {
+                document.getElementById('lucideTest').innerHTML = '<span class="error">✗ Lucide library failed to load</span>';
+            }
+        }, 1000);
+        
+        // Setup test data
+        function setupTestData() {
+            const testData = {
+                studentName: "Test Student",
+                testId: "TEST-1234-5678",
+                email: "test@example.com",
+                startTime: new Date().toISOString(),
+                timestamp: Date.now()
+            };
+            sessionStorage.setItem('testData', JSON.stringify(testData));
+            document.getElementById('dataResult').innerHTML = '<span class="success">✓ Test data saved to sessionStorage</span>';
+        }
+        
+        // Check test data
+        function checkTestData() {
+            const data = sessionStorage.getItem('testData');
+            if (data) {
+                const parsed = JSON.parse(data);
+                document.getElementById('dataResult').innerHTML = `
+                    <span class="success">✓ Test data found:</span><br>
+                    <pre>${JSON.stringify(parsed, null, 2)}</pre>
+                `;
+            } else {
+                document.getElementById('dataResult').innerHTML = '<span class="error">✗ No test data found in sessionStorage</span>';
+            }
+        }
+    </script>
+</body>
+</html>

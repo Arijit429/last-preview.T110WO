@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Test - Plattinum.net</title>
+    <link rel="stylesheet" href="test-entry.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="test-entry-container">
+        <div class="test-entry-card">
+            <div class="card-header">
+                <div class="logo">
+                    <i data-lucide="cpu"></i>
+                    <span>plattinum.net</span>
+                </div>
+                <h1>Welcome to Your Exam</h1>
+                <p>Please enter your details to begin the test</p>
+            </div>
+
+            <form class="test-entry-form" id="testEntryForm">
+                <div class="form-group">
+                    <label for="studentName">
+                        <i data-lucide="user"></i>
+                        Full Name
+                    </label>
+                    <input 
+                        type="text" 
+                        id="studentName" 
+                        name="studentName" 
+                        required 
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                    >
+                    <span class="input-hint">Enter your name as it appears on your ID</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="testId">
+                        <i data-lucide="key"></i>
+                        Test ID / Access Code
+                    </label>
+                    <input 
+                        type="text" 
+                        id="testId" 
+                        name="testId" 
+                        required 
+                        placeholder="XXXX-XXXX-XXXX"
+                        pattern="[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}"
+                        maxlength="14"
+                    >
+                    <span class="input-hint">Format: XXXX-XXXX-XXXX (e.g., AB12-CD34-EF56)</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">
+                        <i data-lucide="mail"></i>
+                        Email Address
+                    </label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        required 
+                        placeholder="your.email@example.com"
+                        autocomplete="email"
+                    >
+                    <span class="input-hint">We'll send your results to this email</span>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                        <span>I have read and agree to the <a href="#" class="link">exam guidelines</a> and <a href="#" class="link">honor code</a></span>
+                    </label>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="confirmReady" name="confirmReady" required>
+                        <span>I confirm that I am ready to begin the test and understand that the timer will start immediately</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-start-test">
+                    <i data-lucide="play-circle"></i>
+                    Start Test
+                </button>
+            </form>
+
+            <div class="test-info">
+                <div class="info-card">
+                    <i data-lucide="clock"></i>
+                    <div class="info-content">
+                        <h3>Test Duration</h3>
+                        <p>120 minutes</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <i data-lucide="file-text"></i>
+                    <div class="info-content">
+                        <h3>Total Questions</h3>
+                        <p>50 questions</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <i data-lucide="alert-circle"></i>
+                    <div class="info-content">
+                        <h3>Important</h3>
+                        <p>No pausing allowed</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="help-section">
+                <p>Having trouble? <a href="#" class="link">Contact support</a> or <a href="index.html" class="link">Go back to home</a></p>
+            </div>
+        </div>
+
+        <div class="background-decoration">
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+            <div class="circle circle-3"></div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <h2>Preparing Your Test...</h2>
+            <p>Please wait while we set up your exam environment</p>
+        </div>
+    </div>
+
+    <script src="test-entry.js"></script>
+</body>
+</html>

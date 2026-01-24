@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Results - Plattinum.net</title>
+    <link rel="stylesheet" href="results.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="results-page">
+        <!-- Header -->
+        <header class="results-header">
+            <div class="logo">
+                <i data-lucide="cpu"></i>
+                <span>plattinum.net</span>
+            </div>
+            <h1>Exam Results</h1>
+            <p class="student-info">
+                <span id="studentName">Student Name</span> | 
+                <span id="testId">Test ID</span>
+            </p>
+        </header>
+
+        <!-- Score Summary Card -->
+        <section class="score-summary">
+            <div class="score-card">
+                <div class="score-circle-container">
+                    <svg class="score-circle" viewBox="0 0 200 200">
+                        <circle cx="100" cy="100" r="85" class="score-bg"></circle>
+                        <circle cx="100" cy="100" r="85" class="score-progress" id="scoreCircle"></circle>
+                    </svg>
+                    <div class="score-text">
+                        <span class="score-value" id="scoreValue">0</span>
+                        <span class="score-total">%</span>
+                    </div>
+                </div>
+                <h2 id="resultStatus" class="result-status">Excellent!</h2>
+                <p id="resultMessage" class="result-message">You've done a great job!</p>
+                <div class="score-details">
+                    <div class="score-detail-item">
+                        <span class="detail-label">Total Score</span>
+                        <span class="detail-value" id="totalScore">0/100</span>
+                    </div>
+                    <div class="score-detail-item">
+                        <span class="detail-label">Time Taken</span>
+                        <span class="detail-value" id="timeTaken">00:00</span>
+                    </div>
+                    <div class="score-detail-item">
+                        <span class="detail-label">Submission Date</span>
+                        <span class="detail-value" id="submissionDate">-</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Stats -->
+        <section class="quick-stats">
+            <div class="stat-card correct">
+                <div class="stat-icon">
+                    <i data-lucide="check-circle"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="correctCount">0</h3>
+                    <p>Correct Answers</p>
+                </div>
+            </div>
+            <div class="stat-card wrong">
+                <div class="stat-icon">
+                    <i data-lucide="x-circle"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="wrongCount">0</h3>
+                    <p>Wrong Answers</p>
+                </div>
+            </div>
+            <div class="stat-card unanswered">
+                <div class="stat-icon">
+                    <i data-lucide="minus-circle"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="unansweredCount">0</h3>
+                    <p>Unanswered</p>
+                </div>
+            </div>
+            <div class="stat-card accuracy">
+                <div class="stat-icon">
+                    <i data-lucide="target"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="accuracyRate">0%</h3>
+                    <p>Accuracy Rate</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section-wise Performance -->
+        <section class="section-performance">
+            <h2 class="section-title">
+                <i data-lucide="bar-chart"></i>
+                Section-wise Performance
+            </h2>
+            <div class="performance-cards">
+                <div class="performance-card">
+                    <div class="performance-header">
+                        <h3>Section 1: Multiple Choice Questions</h3>
+                        <span class="performance-score" id="section1Score">0/30</span>
+                    </div>
+                    <div class="performance-bar-container">
+                        <div class="performance-bar">
+                            <div class="performance-fill" id="section1Fill"></div>
+                        </div>
+                        <span class="performance-percentage" id="section1Percentage">0%</span>
+                    </div>
+                    <div class="performance-details">
+                        <span><i data-lucide="check"></i> <span id="section1Correct">0</span> Correct</span>
+                        <span><i data-lucide="x"></i> <span id="section1Wrong">0</span> Wrong</span>
+                        <span><i data-lucide="minus"></i> <span id="section1Unanswered">0</span> Unanswered</span>
+                    </div>
+                </div>
+                <div class="performance-card">
+                    <div class="performance-header">
+                        <h3>Section 2: Descriptive Questions</h3>
+                        <span class="performance-score" id="section2Score">0/20</span>
+                    </div>
+                    <div class="performance-bar-container">
+                        <div class="performance-bar">
+                            <div class="performance-fill" id="section2Fill"></div>
+                        </div>
+                        <span class="performance-percentage" id="section2Percentage">0%</span>
+                    </div>
+                    <div class="performance-details">
+                        <span><i data-lucide="check"></i> <span id="section2Answered">0</span> Answered</span>
+                        <span><i data-lucide="minus"></i> <span id="section2Unanswered">0</span> Unanswered</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Question Analysis -->
+        <section class="question-analysis">
+            <h2 class="section-title">
+                <i data-lucide="list"></i>
+                Detailed Question Analysis
+            </h2>
+            
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">
+                    <i data-lucide="list"></i>
+                    All Questions
+                </button>
+                <button class="filter-btn" data-filter="correct">
+                    <i data-lucide="check-circle"></i>
+                    Correct
+                </button>
+                <button class="filter-btn" data-filter="wrong">
+                    <i data-lucide="x-circle"></i>
+                    Wrong
+                </button>
+                <button class="filter-btn" data-filter="unanswered">
+                    <i data-lucide="minus-circle"></i>
+                    Unanswered
+                </button>
+            </div>
+
+            <!-- Questions List -->
+            <div class="questions-list" id="questionsList">
+                <!-- Questions will be dynamically loaded here -->
+            </div>
+        </section>
+
+        <!-- Action Buttons -->
+        <section class="action-buttons">
+            <button class="btn-action btn-download" id="downloadBtn">
+                <i data-lucide="download"></i>
+                Download Report
+            </button>
+            <button class="btn-action btn-retake" id="retakeBtn">
+                <i data-lucide="refresh-cw"></i>
+                Retake Exam
+            </button>
+            <a href="index.html" class="btn-action btn-home">
+                <i data-lucide="home"></i>
+                Go to Home
+            </a>
+        </section>
+
+        <!-- Footer -->
+        <footer class="results-footer">
+            <p>&copy; 2025 Plattinum.net - All rights reserved</p>
+            <p>Need help? <a href="#">Contact Support</a></p>
+        </footer>
+    </div>
+
+    <script src="results.js"></script>
+</body>
+</html>
