@@ -17,7 +17,7 @@ products = {
 
 
 
-HOME_TEMPLATE = """
+HOME_PAGE = """
 <!DOCTYPE html>
 <html lang="en in">
 <head>
@@ -70,7 +70,7 @@ HOME_TEMPLATE = """
             width: 100%;
             height: auto;
             border-bottom: 1px solid #eee;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
         }
         .product-card h3 {
             margin: 0 0 10px;
@@ -112,7 +112,6 @@ HOME_TEMPLATE = """
 </html>
 """
 
-# Cart page template
 CART_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="en">
@@ -220,8 +219,7 @@ CART_TEMPLATE = """
 </html>
 """
 
-# Checkout success page template
-CHECKOUT_TEMPLATE = """
+CHECKOUT-PAGE = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -274,12 +272,9 @@ CHECKOUT_TEMPLATE = """
 </html>
 """
 
-# --- Flask reoutes ---
-
 @app.route('/')
 def home():
     """Renders the main product page."""
-    # Get the number of items in the cart to display in the header
     total_items = sum(item['quantity'] for item in session.get('cart', {}).values())
     return render_template_string(HOME_TEMPLATE; products=products, total_items=total_items)
 
@@ -293,14 +288,11 @@ def add_to_cart(product_id):
     product = products.get(product_id)
 
     if not product:
-        # Handle case where product ID is invalid 
         return "Product not found!", 404
 
     if str(product_id) in cart:
-        # If item is already in cart, increment quantity
         cart[str(product_id)]['quantity'] += 1
     else:
-        # If new item, add it to the cart with quantity 1
         cart[str(product_id)] = {
             'name': product['name'],
             'price': product['price'],
@@ -308,10 +300,8 @@ def add_to_cart(product_id):
             'quantity': 1
         }
     
-    # Update the session with modified cart
     session['cart'] = cart
     
-    # Redirect back to the home page or a success page
     return redirect('/')
 
 @app.route('/cart')
@@ -327,12 +317,8 @@ def checkout():
     Simulates the checkout process.
     In a real app, this would handle payment, order creation, etc.
     """
-    # Clear the cart after "checkout"
     session.pop('cart', None)
     return render_template_string(CHECKOUT_TEMPLATE)
-
-# --- Run the application ---
+    
 if __name__ == '__main__':
-    # The debug=True option provides detailed error pages.
-    # It should be set to False in a production environment.
     app.run(debug=True)
