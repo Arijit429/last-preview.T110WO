@@ -7,7 +7,7 @@ function Dashboard({ setCurrentPage }: DashboardProps) {
     <div className="page">
       <div className="banner gradient-blue">
         <div className="banner-content">
-          <span className="banner-tag">🚀 Welcome Back!</span>
+          <span className="banner-tag">🚀 Welcome Back</span>
           <h1>Your Learning Dashboard</h1>
           <p>Track your progress and achieve your study goals.</p>
           <div className="banner-actions">
